@@ -13,7 +13,6 @@ RUN rm -Rf /etc/nginx/nginx.conf
 RUN rm -Rf /etc/nginx/conf.d/default.conf
 ADD /nginx.conf /etc/nginx/nginx.conf
 ADD conf/default.conf /etc/nginx/conf.d/default.conf
-ADD conf/upstream.conf /etc/nginx/conf/upstream.conf
 
 # nginx site conf
 RUN mkdir -p /etc/nginx/sites-available/ && \
