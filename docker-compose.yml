@@ -51,14 +51,15 @@ services:
       networks:
         - mynet
 
-#IF YOU WANT TO USE APCHE FOR WEB PROXY, YOU WILL REMOVE COMMENT 
-  ### APACHE ################################################
-    # apache:
-    #   build:
-    #     context: ./docker/apache
-    #   volumes:
-    #     - ./:/var/www/html
-    #   ports:
-    #     - "8000:80"
-    #   networks:
-    #     - mynet
+  ## IF YOU WANT TO USE APCHE FOR WEB PROXY, YOU WILL REMOVE COMMENT 
+  ## APACHE ################################################
+    apache:
+      build:
+        context: ./docker/apache
+      container_name: apache_caerux
+      volumes:
+        - ./:/var/www/html
+      ports:
+        - "8000:80"
+      networks:
+        - mynet
