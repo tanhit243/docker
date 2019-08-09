@@ -12,9 +12,9 @@ services:
         context: ./docker/nginx
       container_name: nginx_caerux
       volumes:
-        - ./:/usr/share/nginx/html
+        - ./:/home/projects/demo-docker
       ports:
-        - "${NGINX_HOST_HTTP_PORT}:80"
+        - "${NGINX_HOST_HTTP_PORT}:80"   #NGINX_HOST_HTTP_PORT is variable in .env file
         - "${NGINX_HOST_HTTPS_PORT}:443"
       depends_on:
         - php-fpm
@@ -34,7 +34,7 @@ services:
           - ./:/var/www
       expose:
         - "9000"
-      networks:
+      networks: 
         - mynet
 
   ### MySQL ################################################
@@ -46,20 +46,21 @@ services:
         - MYSQL_ALLOW_EMPTY_PASSWORD=true
       volumes:
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+        - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
       ports:
         - "${MYSQL_PORT}:3306"
       networks:
         - mynet
 
-  ## IF YOU WANT TO USE APCHE FOR WEB PROXY, YOU WILL REMOVE COMMENT 
-  ## APACHE ################################################
-    apache:
-      build:
-        context: ./docker/apache
-      container_name: apache_caerux
-      volumes:
-        - ./:/var/www/html
-      ports:
-        - "8000:80"
-      networks:
-        - mynet
+  # # IF YOU WANT TO USE APACHE FOR WEB PROXY, YOU WILL REMOVE COMMENT 
+  # # APACHE ################################################
+  #   apache:
+  #     build:
+  #       context: ./docker/apache
+  #     container_name: apache_caerux
+  #     volumes:
+  #       - ./:/var/www/html
+  #     ports:
+  #       - "8000:80"
+  #     networks:
+  #       - mynet

@@ -19,8 +19,8 @@ RUN mkdir -p /etc/nginx/sites-available/ && \
 mkdir -p /etc/nginx/sites-enabled/ && \
 mkdir -p /etc/nginx/ssl/ 
 
-# Enable site / vitualhost 
-ADD sites-available/demo_vitualhost.conf /etc/nginx/sites-available/demo_vitualhost.conf
-RUN ln -s /etc/nginx/sites-available/demo_vitualhost.conf /etc/nginx/sites-enabled/demo_vitualhost.conf
+# Enable site / virtualhost 
+ADD sites-available/demo_virtualhost.conf /etc/nginx/sites-available/demo_virtualhost.conf
+RUN ln -s /etc/nginx/sites-available/demo_virtualhost.conf /etc/nginx/sites-enabled/demo_virtualhost.conf
 
 EXPOSE 80 443
